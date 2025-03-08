@@ -19,7 +19,7 @@ import { nanoid } from 'nanoid';
 import { renderTask } from './js/render-tasks.js';
 
 const TASK_LIST = 'taskList';
-const tasks = JSON.parse(localStorage.getItem(TASK_LIST)) ?? [];
+let tasks = JSON.parse(localStorage.getItem(TASK_LIST)) ?? [];
 renderTask(tasks);
 
 refs.form.addEventListener('submit', event => {
@@ -39,4 +39,22 @@ refs.form.addEventListener('submit', event => {
 
   renderTask(tasks);
   refs.form.reset();
+});
+
+//  дилегування,
+//  відслідкувати що це саме кнопка,
+//  одтимати ІД з батьківськго елементу цієї кнопки(лі)
+//  видалитии елемент з масиву
+//  перерендерити з масиву
+
+refs.ul.addEventListener('click', event => {
+  if (event.target.nodeName === 'BUTTON') {
+    const dataId = event.target.closest('[data-id]').dataset.id;
+    tasks = tasks.filter(task => {
+      return task.id !== dataId;
+    });
+    console.log(tasks)
+    localStorage.setItem(TASK_LIST, JSON.stringify(tasks));
+    renderTask(tasks);
+  }
 });
