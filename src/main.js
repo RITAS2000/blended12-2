@@ -16,7 +16,12 @@
 */
 import { refs } from './js/refs.js';
 import { nanoid } from 'nanoid';
-const tasks = [];
+import { renderTask } from './js/render-tasks.js';
+
+const TASK_LIST = 'taskList';
+const tasks = JSON.parse(localStorage.getItem(TASK_LIST)) ?? [];
+renderTask(tasks);
+
 refs.form.addEventListener('submit', event => {
   event.preventDefault();
   const taskName = event.target.elements.taskName.value.trim();
@@ -27,5 +32,11 @@ refs.form.addEventListener('submit', event => {
     taskDescription,
     id: nanoid(),
   };
-  console.log(newTask);
+
+  tasks.push(newTask);
+
+  localStorage.setItem(TASK_LIST, JSON.stringify(tasks));
+
+  renderTask(tasks);
+  refs.form.reset();
 });
