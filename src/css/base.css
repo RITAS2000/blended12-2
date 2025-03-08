@@ -1,0 +1,113 @@
+section {
+  padding-top: 30px;
+}
+
+.tasks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  list-style-type: none;
+}
+
+.task-list-item {
+  display: flex;
+  width: calc((100% - 15px) / 2);
+  background-color: #fdfdfd;
+  border: 1px solid #00f;
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  /* background-color: #32becb; */
+  color: rgba(255, 255, 255);
+}
+
+.task-list-item-btn {
+  padding: 6px 12px;
+  align-self: flex-end;
+  border-radius: 4px;
+  color: #ff6b0a;
+  border: 2px solid #ff6b0a;
+  background-color: transparent;
+  transition: all 250ms ease-in-out;
+}
+
+.task-list-item-btn:hover,
+.task-list-item-btn:focus {
+  color: #fdfdfd;
+  background-color: #ff6b0a;
+  transform: scale(1.08);
+}
+
+@media only screen and (min-width: 768px) {
+  .task-list-item {
+    width: calc((100% - 15px * 3) / 4);
+  }
+}
+
+/* Базові стилі */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Основна світла тема */
+body.theme-light {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+body.theme-light .header {
+  background-image: linear-gradient(270deg, #ffcc00, #ff9900, #ff6600);
+}
+
+body.theme-light .task-list-item {
+  background-color: #fff8e1;
+  color: #333;
+  border: 1px solid #ffcc00;
+}
+
+/* Темна тема */
+body.theme-dark {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.theme-dark .header {
+  background-image: linear-gradient(270deg, #222, #111, #000);
+}
+
+body.theme-dark .task-list-item {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #ff6b0a;
+}
+
+/* Анімована кнопка перемикання тем */
+.theme-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+body.theme-dark .theme-toggle-button {
+  background: linear-gradient(45deg, #ff6b0a, #ff4500);
+  color: white;
+}
+
+body.theme-light .theme-toggle-button {
+  background: linear-gradient(45deg, #ffcc00, #ff9900);
+  color: #333;
+}
+
+.theme-toggle-button:hover {
+  transform: scale(1.1);
+}
