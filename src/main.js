@@ -14,3 +14,18 @@
       <p>Текст</p>
   </li>
 */
+import { refs } from './js/refs.js';
+import { nanoid } from 'nanoid';
+const tasks = [];
+refs.form.addEventListener('submit', event => {
+  event.preventDefault();
+  const taskName = event.target.elements.taskName.value.trim();
+  const taskDescription = event.target.elements.taskDescription.value.trim();
+
+  const newTask = {
+    taskName,
+    taskDescription,
+    id: nanoid(),
+  };
+  console.log(newTask);
+});
